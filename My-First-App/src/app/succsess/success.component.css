@@ -1,9 +1,8 @@
 p{
     padding: 20px;
     background-color: palegreen;
-    border: 1px solid green;
-    border-radius: 20px;
-
+    border: 0.5px solid green;
+    border-radius: 15px;
 }
 
 

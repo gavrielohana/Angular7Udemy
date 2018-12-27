@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     p{
         padding: 20px;
         background-color: mistyrose;
-        border: 1px solid red;
+        border: 0.5px solid red;
         border-radius: 15px;
     }
     `]
