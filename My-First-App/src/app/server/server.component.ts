@@ -5,14 +5,43 @@ import { Component } from '@angular/core';
     templateUrl: './server.component.html'
 })
 export class ServerComponent {
-    serverID:number = 10;
-    serverStatus:string = 'offline';
+    serverID: number = 10;
+    serverStatus: string = 'offline';
 
 
-    getServerStatus():string{
-        return this.serverStatus;
-        //return 'Holi mozes';
+    constructor() {
+        this.serverStatus = Math.random() > 0.5 ? 'offline' : 'online';
     }
+
+    getServerStatus(): string {
+        return this.serverStatus;
+
+    }
+
+    getColor() {
+        return this.serverStatus === 'online' ? 'green' : 'red';
+    }
+
+
+    setStyle()
+    {
+        //return this.styleObjectOnline;
+        return this.serverStatus==='online'? this.styleObjectOnline:this.styleObjectOffline;
+    }
+
+    styleObjectOnline: Object = {
+        'padding': '20px',
+        'background-color': 'palegreen',
+        'border': '0.5px solid green',
+        'border-radius': '15px'
+    };
+
+    styleObjectOffline: Object = {
+        'padding': '20px',
+        'background-color': 'mistyrose',
+        'border': '0.5px solid red',
+        'border-radius': '15px'
+    };
 
 }
 
