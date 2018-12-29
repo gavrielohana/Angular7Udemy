@@ -13,6 +13,7 @@ export class ServersComponent implements OnInit {
   allowNewServer: boolean = false;
   serverCreationStatus: string = "No server was created!";
   serverName = 'Testserver';
+  serverCreated = false;
 
   constructor() {
     setTimeout(() => { this.allowNewServer = true; }, 2000);
@@ -22,10 +23,9 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer(event: Event) {
+    this.serverCreated = true;
     this.serverCreationStatus = "Server was created! Name is " + this.serverName;
-    //console.log(event);
-    console.log( (<HTMLButtonElement>event.target).innerText );
-  } 
+  }
 
   onUpdateServerName(event: Event) {
     //console.log(event);
