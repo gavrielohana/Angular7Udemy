@@ -1,12 +1,12 @@
 import { Recipe } from './recipe.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import {  Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 
 @Injectable()
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>();
+
 
     private recipes: Recipe[] = [
         new Recipe(
@@ -24,7 +24,7 @@ export class RecipeService {
         new Recipe(
             'Si-Si',
             'Hatul Bizot Matzui',
-            'https://www.agalili.com/wp-content/uploads/2018/09/%D7%A2%D7%92%D7%9C%D7%95%D7%AA-%D7%94%D7%9E%D7%A1%D7%AA%D7%95%D7%A8-%D7%91%D7%A7%D7%99%D7%A5018.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/d/d5/CAT2007_05_16.jpg',
             [new Ingredient("Hatul", 1),
             new Ingredient("Kotzetzim", 1),
             new Ingredient("Metagnim", 1),
