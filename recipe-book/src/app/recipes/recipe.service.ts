@@ -1,20 +1,21 @@
 import { Recipe } from './recipe.model';
-import {  Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { Subject } from 'rxjs';
 
 
 @Injectable()
 export class RecipeService {
-
+    recipesChanged = new Subject<Recipe[]>();
 
     private recipes: Recipe[] = [
         new Recipe(
             'Goulash',
             'Hungarian tradition meal',
             'https://img.wcdn.co.il/f_auto,w_700,t_54/1/6/1/2/1612361-46.jpg',
-            [new Ingredient("Meat", 1),new Ingredient("salt", 3)]
-            ),
+            [new Ingredient("Meat", 1), new Ingredient("salt", 3)]
+        ),
         new Recipe(
             'Roasted Chicken',
             'A great meal',
@@ -29,23 +30,38 @@ export class RecipeService {
             new Ingredient("Kotzetzim", 1),
             new Ingredient("Metagnim", 1),
             new Ingredient("Memalim Beorez", 5)
-        ])
+            ])
     ];
 
     constructor(private slService: ShoppingListService) {
-
+        console.log("RecipeServer Created");
     }
 
     getRecipes() {
         return this.recipes.slice();
     }
 
-    getRecipe(index:number) {
+    getRecipe(index: number) {
         //return this.recipes.find(item => item.ID==id);
         return this.recipes[index];
     }
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.slService.addIngredients(ingredients);
+    }
+
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe) {
+        this.recipes[index] = newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index:number){
+        this.recipes.splice(index,1);
+        this.recipesChanged.next(this.recipes.slice());
     }
 }
