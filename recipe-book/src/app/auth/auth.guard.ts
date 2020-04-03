@@ -2,9 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTr
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-
 import { AuthService } from './auth.service';
-// import { Url } from 'url';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
@@ -21,5 +19,4 @@ export class AuthGuard implements CanActivate {
                 return this.router.createUrlTree(['/auth']);
             }));
     }
-
 }

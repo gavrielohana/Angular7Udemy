@@ -9,7 +9,5 @@ export class LoadingSpinnerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

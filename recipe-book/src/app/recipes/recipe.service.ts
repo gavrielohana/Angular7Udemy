@@ -34,14 +34,12 @@ export class RecipeService {
     // ];
 
     constructor(private slService: ShoppingListService) {
-        console.log("RecipeServer Created");
+        // console.log("RecipeServer Created");
     }
-
 
     setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
         this.recipesChanged.next(this.recipes.slice());
-
     }
 
     getRecipes() {
@@ -49,7 +47,6 @@ export class RecipeService {
     }
 
     getRecipe(index: number) {
-        //return this.recipes.find(item => item.ID==id);
         return this.recipes[index];
     }
 

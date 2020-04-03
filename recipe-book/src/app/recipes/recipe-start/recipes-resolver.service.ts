@@ -18,7 +18,5 @@ export class RecipesResolverSeevice implements Resolve<Recipe[]> {
         } else {
             return recipes;
         }
-
     }
-
 }

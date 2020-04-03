@@ -1,5 +1,4 @@
 import { Ingredient } from '../shared/ingredient.model';
-// import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export class ShoppingListService {
@@ -39,5 +38,4 @@ export class ShoppingListService {
         this.ingredients.splice(index,1);
         this.ingredientsChanged.next(this.ingredients.slice());
     }
-
 }

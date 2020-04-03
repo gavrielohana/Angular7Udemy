@@ -20,7 +20,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //console.log("In recipe-list, ngOnInit, call recipeService.getRecipes()")
     this.recipes = this.recipeService.getRecipes();
     this.subscription = this.recipeService.recipesChanged.subscribe((recipes: Recipe[]) => {
       this.recipes = recipes;
@@ -32,7 +31,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //throw new Error("Method not implemented.");
     this.subscription.unsubscribe();
   }
 }
