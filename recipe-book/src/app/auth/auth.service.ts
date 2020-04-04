@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject, BehaviorSubject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -29,19 +29,18 @@ export class AuthService {
         postParams.append('password', password);
 
         return this.http.post<AuthResponseData>
-            ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBA1VdfWyNHLwNgwFvwgrsU6bvdqPVvDNs', {
+            ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey, {
                 email: email,
                 password: password,
                 returnSecureToken: true
             }).pipe(catchError(this.handleError), tap(resData => {
                 this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
             }));
-
     }
 
     login(email: string, password: string) {
         return this.http.post<AuthResponseData>
-            ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBA1VdfWyNHLwNgwFvwgrsU6bvdqPVvDNs', {
+            ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey, {
                 email: email,
                 password: password,
                 returnSecureToken: true
