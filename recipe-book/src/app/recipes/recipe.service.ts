@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
-
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
 
-      private recipes: Recipe[] = [];
+    private recipes: Recipe[] = [];
     //     private recipes: Recipe[] =     [new Recipe(
     //         'Goulash',
     //         'Hungarian tradition meal',
@@ -33,9 +33,10 @@ export class RecipeService {
     //         ])
     // ];
 
-    constructor(private slService: ShoppingListService) {
-        // console.log("RecipeServer Created");
-    }
+    constructor(
+        private slService: ShoppingListService,
+        private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+    ) { }
 
     setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
